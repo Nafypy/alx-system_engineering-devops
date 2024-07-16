@@ -1,5 +1,5 @@
-#!/usr/bin/env/ bash
+#!/usr/bin/env/bash
 #fix it short
 
 cat /etc/nginx/sites-available/default > /etc/nginx/sites-enable/default
-rm /run/nginx.pid
+rm/run/nginx.pid
