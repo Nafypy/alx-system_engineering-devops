@@ -20,24 +20,30 @@ def get_employee_todo_progress(employee_id):
         print("Employee not found")
         return
     employee_name = user_response.json().get("name")
-    todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
+    todos_url = (
+            f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
+            )
     todos_response = requests.get(todos_url)
     if todos_response.status_code != 200:
-       print("Could not retrieve todo list.")
-       return
+        print("Could not retrieve todo list.")
+        return
     todos = todos_response.json()
-    #Calculate progress
+    # Calculate progress
     total_tasks = len(todos)
     done_tasks = [task for task in todos if task.get("completed")]
     number_of_done_tasks = len(done_tasks)
-    #display results
-    print(f"Employee {employee_name} is done with tasks ({number_of_done_tasks}/{total_tasks}):")
+    # display results
+    print(
+            f"Employee {employee_name} is done with tasks"
+
+            f"({number_of_done_tasks}/{total_tasks}):"
+            )
     for task in done_tasks:
         print(f"\t {task.get('title')}")
+
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: ./script_name.py EMPLOYEE_ID")
     else:
         get_employee_todo_progress(sys.argv[1])
-       
-
